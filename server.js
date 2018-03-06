@@ -4,7 +4,7 @@ var express = require('express'),
     morgan  = require('morgan');
     bodyParser = require('body-parser');
     mongoose = require('mongoose');
-    Characer = require('./models/character');
+    Character = require('./models/character');
 
 Object.assign=require('object-assign')
 
