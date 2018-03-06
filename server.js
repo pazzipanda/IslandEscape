@@ -158,7 +158,7 @@ charRoute.post(function(req, res) {
   // Save the character and check for errors
   character.save(function(err) {
     if (err)
-      res.send(err);
+      res.json({ message: 'couldnt save'});
 
     res.json({ message: 'Character added to game', data: character });
   });
