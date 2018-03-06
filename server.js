@@ -124,6 +124,16 @@ app.use(bodyParser.urlencoded({
   };
   connect();
 
+  var dbMongoose = mongoose.connection;
+
+  dbMongoose.on('error', function(error){
+      console.log("Error loading the db - "+ error);
+  });
+
+  dbMongoose.on('disconnected', connect);
+
+
+
 
 //  Routing:
 var router = express.Router();
