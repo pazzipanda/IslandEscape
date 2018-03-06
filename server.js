@@ -184,7 +184,7 @@ charRoute.get(function(req, res) {
 // Create endpoint /api/char/:char_id for PUT
 charRoute.put(function(req, res) {
   // Use the Character model to find a specific Character
-  Character.findById(req.params.char_id, function(err, char) {
+  Character.findOne( { 'owner' : req.params.user_id }, function(err, char) {
     if (err)
       res.send(err);
 
@@ -204,7 +204,7 @@ charRoute.put(function(req, res) {
 // Create endpoint /api/char/:char_id for DELETE
 charRoute.delete(function(req, res) {
   // Use the Character model to find a specific character and remove it
-  Character.findByIdAndRemove(req.params.char_id, function(err) {
+  Character.findOneAndRemove( { 'owner' : req.params.user_id }, function(err, char) {
     if (err)
       res.send(err);
 
