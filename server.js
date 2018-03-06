@@ -171,7 +171,7 @@ var charRoute = router.route('/char/:user_id');
 // Create endpoint /api/char/:user_id for GET
 charRoute.get(function(req, res) {
   // Use the Character model to find a specific character
-  Character.findOne( { owner = req.params.user_id }, function(err, char) {
+  Character.findOne( { 'owner' : req.params.user_id }, function(err, char) {
     if (err)
       res.send(err);
 
