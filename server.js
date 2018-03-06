@@ -166,12 +166,12 @@ charRoute.post(function(req, res) {
 
 
 // Create a new route with the /char/:char_id prefix
-var charRoute = router.route('/char/:char_id');
+var charRoute = router.route('/char/:user_id');
 
-// Create endpoint /api/char/:char_id for GET
+// Create endpoint /api/char/:user_id for GET
 charRoute.get(function(req, res) {
   // Use the Character model to find a specific character
-  Character.findById(req.params.char_id, function(err, char) {
+  Character.findOne( { owner = req.params.user_id }, function(err, char) {
     if (err)
       res.send(err);
 
@@ -208,7 +208,7 @@ charRoute.delete(function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Character removed from the locker!' });
+    res.json({ message: 'Character removed from the database!' });
   });
 });
 
