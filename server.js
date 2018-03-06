@@ -145,6 +145,18 @@ router.get('/', function(req, res) {
 // Create a new route with the prefix /char
 var charRoute = router.route('/char');
 
+// Create endpoint /api/char for GET
+charRoute.get(function(req, res) {
+  // Use the Character model to find all beer
+  Character.find(function(err, chars) {
+    if (err)
+      res.send(err);
+
+    res.json(chars);
+  });
+});
+
+
 // Create endpoint /api/char for POSTS
 charRoute.post(function(req, res) {
   // Create a new instance of the Charater model
@@ -181,7 +193,7 @@ charRoute.get(function(req, res) {
 
 
 
-// Create endpoint /api/char/:char_id for PUT
+// Create endpoint /api/char/:user_id for PUT
 charRoute.put(function(req, res) {
   // Use the Character model to find a specific Character
   Character.findOne( { 'owner' : req.params.user_id }, function(err, char) {
